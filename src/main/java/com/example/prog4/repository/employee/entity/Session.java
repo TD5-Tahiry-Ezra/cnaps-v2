@@ -1,4 +1,4 @@
-package com.example.prog4.repository.entity;
+package com.example.prog4.repository.employee.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,14 +22,14 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "\"session\"")
+@Table(name ="session")
 @EqualsAndHashCode
 @ToString
 public class Session {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private String id;
-    private String sessionId;
+    private String sessionid;
     private LocalDateTime timeout;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
