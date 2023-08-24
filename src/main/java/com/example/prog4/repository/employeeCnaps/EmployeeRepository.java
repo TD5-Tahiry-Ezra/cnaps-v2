@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository(value="employeeCnapsRepository")
 public interface EmployeeRepository extends JpaRepository<Employee, String> {
+    String getCnapsNumberByEmployeeId(Long employeeId);
 }
