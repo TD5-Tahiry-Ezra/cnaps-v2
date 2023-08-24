@@ -1,3 +1,6 @@
+-- V12__Create_employee_table_optional_fields.sql
+
+-- Create required extensions and types
 create extension if not exists "uuid-ossp";
 
 do
@@ -14,28 +17,29 @@ $$
     end
 $$;
 
-
+-- Create employee table with optional fields
 create table if not exists "employee"
 (
-    id                  varchar
+    id                  varchar not null
         constraint employee_pk primary key default uuid_generate_v4(),
     first_name          varchar,
-    last_name           varchar not null,
-    registration_number varchar not null,
-    personal_email      varchar not null unique,
-    cin                 varchar not null check ( cin ~ '^[0-9]+$'),
-    children_number     integer            default 0 check ( children_number > -1 ),
-    birth_date          date    not null,
-    entrance_date       date    not null,
+    last_name           varchar,
+    registration_number varchar,
+    personal_email      varchar unique,
+    cin                 varchar check ( cin ~ '^[0-9]+$'),
+    children_number     integer default 0 check ( children_number > -1 ),
+    birth_date          date,
+    entrance_date       date,
     departure_date      date,
-    sex                 sex     not null,
-    csp                 csp     not null,
+    sex                 sex,
+    csp                 csp,
     image               text,
-    professional_email  varchar not null unique,
-    address             varchar not null,
-    endToEndId          varchar not null
+    professional_email  varchar unique,
+    address             varchar,
+    endToEndId          varchar
 );
 
+-- Create sequence and trigger for reference number
 CREATE SEQUENCE if not exists employ_ref_sequence
     START WITH 1
     INCREMENT BY 1
