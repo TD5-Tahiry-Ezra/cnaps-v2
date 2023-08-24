@@ -3,12 +3,8 @@ package com.example.prog4.repository.employeeCnaps.entity;
 import com.example.prog4.repository.employee.entity.enums.Sex;
 import com.example.prog4.repository.employee.entity.enums.Csp;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
@@ -54,6 +50,8 @@ public class Employee implements Serializable {
     @Enumerated(EnumType.STRING)
     @ColumnTransformer(read = "CAST(csp AS varchar)", write = "CAST(? AS csp)")
     private Csp csp;
+
+    @JoinColumn(name = "endToEndId", referencedColumnName = "endToEndId", insertable = false, updatable = false)
     private String endToEndId;
     private String number;
 }
